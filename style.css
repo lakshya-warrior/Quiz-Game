@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 1rem;
+}
+
+.block {
+    background-color: lightblue;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+.screen{
+    display: none;
+    padding: 2rem;
+    text-align: center;
+}
+.screen.game {
+    display: block;
+}
+
+#start-screen h1 {
+    margin-bottom: 19px;
+    font-size: 2.5rem;
+}
+
+#start-screen p {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+#question {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.quizinfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+
+}
+
+.answers-btn {
+    color: #333;
+    border: 2px solid;
+    border-radius: 10px;
+
+    padding:  1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.answers-btn:hover {
+    background-color: lightcyan;    
+    border-color: blue;
+}
+
+.answers-btn.correct {
+    background-color: #e6fff0;
+    border-color: greenyellow;
+    color: green;
+}
+
+.answers-btn.wrong {
+    background-color: #ff7f7f;
+    border-color: crimson;
+    color: red;
+}
+
+.progersbar {
+    height: 10px;
+    background-color: #f8f0e5;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #ea8633;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#result-screen h1 {
+    color: #ea8633;
+    margin-bottom: 30px;
+
+}
+
+.info{
+    background-color: wheat;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.info p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+
+}
+
+#resultmessage {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ea8633;
+}
+
+button{
+    background-color: #ea8633;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.s ease;
+}
+button:hover {
+    background-color: #d45b28;
+}
+
+@media (max-width: 500px) {
+    .screen{
+        padding: 1rem;
+    }
+
+    #start-screen h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
