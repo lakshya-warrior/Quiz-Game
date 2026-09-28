@@ -10,10 +10,8 @@ An interactive, responsive trivia quiz application built with vanilla JavaScript
 
 ## 🎮 Live Demo
 
-> **Play the game live:** [https://lakshya-warrior.github.io/Quiz-Game/](https://lakshya-warrior.github.io/Quiz-Game/)  
-> *(To activate, go to repository **Settings** $\rightarrow$ **Pages** $\rightarrow$ **Build and deployment** $\rightarrow$ set Branch to `main` and save).*
+**Play the game live:** [https://lakshya-warrior.github.io/Quiz-Game/](https://lakshya-warrior.github.io/Quiz-Game/)  
 
----
 
 ## ✨ Features
 
