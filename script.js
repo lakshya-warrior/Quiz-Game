@@ -1,188 +1,164 @@
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
 const resultScreen = document.getElementById("result-screen");
-const startbtn = document.getElementById("startbtn");
-const question = document.getElementById("question");
-const currquesion = document.getElementById("curq");
-const totlaquesion = document.getElementById("totalq");
-const scoreofhtml = document.getElementById("score");
-const answersofhtml = document.getElementById("answers");
-const progersbar = document.getElementById("progress");
-const result = document.getElementById("result");
-const resultmessage = document.getElementById("resultmessage");
-const resultbutton = document.getElementById("resultbutton");
+const startBtn = document.getElementById("startbtn");
+const questionElement = document.getElementById("question");
+const currentQuestionElement = document.getElementById("curq");
+const totalQuestionsElement = document.getElementById("totalq");
+const finalTotalQuestionsElement = document.getElementById("final-totalq");
+const scoreElement = document.getElementById("score");
+const answersContainer = document.getElementById("answers");
+const progressBar = document.getElementById("progress");
+const resultElement = document.getElementById("result");
+const resultMessage = document.getElementById("resultmessage");
+const resultButton = document.getElementById("resultbutton");
 
-
-const quizquestions = [
+const quizQuestions = [
     {
-        question: "Capital of Turkmenistan",
+        question: "What is the capital of Turkmenistan?",
         answers: [
-            {text: "Astana", correct: false},
-            {text: "Baku", correct: false},
-            {text: "Ashgabat", correct: true},
-            {text: "Bishkek", correct: false},
+            { text: "Astana", correct: false },
+            { text: "Baku", correct: false },
+            { text: "Ashgabat", correct: true },
+            { text: "Bishkek", correct: false }
         ]
     },
     {
-        question: "Hottest planet in our solar system",
+        question: "Which is the hottest planet in our solar system?",
         answers: [
-            {text: "Mars", correct: false},
-            {text: "Venus", correct: true},
-            {text: "Mercury", correct: false},
-            {text: "KELT-9b", correct: false},
+            { text: "Mars", correct: false },
+            { text: "Venus", correct: true },
+            { text: "Mercury", correct: false },
+            { text: "Jupiter", correct: false }
         ]
     },
     {
-        question: "Scotland's National Animal is",
+        question: "What is Scotland's National Animal?",
         answers: [
-            {text: "Red squirrel", correct: false},
-            {text: "Scottish Red deer", correct: false},
-            {text: "Octopus", correct: false},
-            {text: "Unicorn", correct: true},
+            { text: "Red Squirrel", correct: false },
+            { text: "Scottish Red Deer", correct: false },
+            { text: "Highland Cow", correct: false },
+            { text: "Unicorn", correct: true }
         ]
     },
     {
         question: "How many hearts does an octopus have?",
         answers: [
-            {text: "1", correct: false},
-            {text: "2", correct: false},
-            {text: "3", correct: true},
-            {text: "4", correct: false},
+            { text: "1", correct: false },
+            { text: "2", correct: false },
+            { text: "3", correct: true },
+            { text: "4", correct: false }
         ]
     },
-    // {
-    //     question: "What is Parv?",
-    //     answers: [
-    //         {text: "Bad boy", correct: true},
-    //         {text: "Very bad boy", correct: false},
-    //         {text: "not good boy", correct: false},
-    //         {text: "tevakuf boy", correct: false},
-    //     ]
-    // },
     {
-        question: "How much time does it take for Honey to get spoiled?",
+        question: "How long does it take for natural honey to spoil?",
         answers: [
-            {text: "one week", correct: false},
-            {text: "one year", correct: false},
-            {text: "three years", correct: false},
-            {text: "never", correct: true},
+            { text: "One week", correct: false },
+            { text: "One year", correct: false },
+            { text: "Three years", correct: false },
+            { text: "Never", correct: true }
         ]
     }
-]
+];
 
-
-let currentquesionidx = 0;
+let currentQuestionIndex = 0;
 let score = 0;
-let answersdisabled = false;
+let answersDisabled = false;
 
-totlaquesion.textContent = quizquestions.length;
+if (totalQuestionsElement) totalQuestionsElement.textContent = quizQuestions.length;
+if (finalTotalQuestionsElement) finalTotalQuestionsElement.textContent = quizQuestions.length;
 
-startbtn.addEventListener("click", startQuiz);
-resultbutton.addEventListener("click", restartQuiz);
+startBtn.addEventListener("click", startQuiz);
+resultButton.addEventListener("click", restartQuiz);
 
-function startQuiz(){
-    console.log("Quiz Started!");
+function startQuiz() {
     score = 0;
-    currentquesionidx=0;
-    scoreofhtml.textContent = score;
+    currentQuestionIndex = 0;
+    scoreElement.textContent = score;
 
-    startScreen.classList.remove("game"); 
+    startScreen.classList.remove("game");
+    resultScreen.classList.remove("game");
     gameScreen.classList.add("game");
 
-    showquestion()
-
+    showQuestion();
 }
 
-function showquestion() {
-    answersdisabled = false;
-    const currentquesion = quizquestions[currentquesionidx];
+function showQuestion() {
+    answersDisabled = false;
+    const currentQuestion = quizQuestions[currentQuestionIndex];
 
-    currquesion.textContent = currentquesionidx + 1;
-    const progresspercent = (currentquesionidx/quizquestions.length)*100;
+    currentQuestionElement.textContent = currentQuestionIndex + 1;
+    const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
 
-    progersbar.style.width = progresspercent + "%";
-    question.textContent = currentquesion.question;
+    progressBar.style.width = progressPercent + "%";
+    questionElement.textContent = currentQuestion.question;
 
-    // To clear the answer buttons
-    answersofhtml.innerHTML = "";
-    currentquesion.answers.forEach(answer => {
+    answersContainer.innerHTML = "";
+    currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.textContent = answer.text;
         button.classList.add("answers-btn");
-
         button.dataset.correct = answer.correct;
-
         button.addEventListener("click", selectAnswer);
-        
-        answersofhtml.appendChild(button);
-    })
+        answersContainer.appendChild(button);
+    });
 }
 
 function selectAnswer(event) {
-    if (answersdisabled) return;
+    if (answersDisabled) return;
 
-    answersdisabled = true;
-    const seleectbutton = event.target;
-    const iscorrect = seleectbutton.dataset.correct === "true";
+    answersDisabled = true;
+    const selectedButton = event.target;
+    const isCorrect = selectedButton.dataset.correct === "true";
 
-    Array.from(answersofhtml.children).forEach(button => {
-        if (button.dataset.correct === "true"){
+    Array.from(answersContainer.children).forEach(button => {
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
-        }
-        else if (button === seleectbutton) {
+        } else if (button === selectedButton) {
             button.classList.add("wrong");
         }
     });
 
-    if (iscorrect) {
+    if (isCorrect) {
         score++;
-        scoreofhtml.textContent = score;
+        scoreElement.textContent = score;
     }
 
-
     setTimeout(() => {
-        currentquesionidx++;
-
-        if(currentquesionidx < quizquestions.length) {
-            showquestion()
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizQuestions.length) {
+            showQuestion();
+        } else {
+            showResults();
         }
-        else {
-            showresults()
-        }
-    },1000);
+    }, 1000);
 }
 
-
-function showresults() {
+function showResults() {
     gameScreen.classList.remove("game");
     resultScreen.classList.add("game");
 
-    result.textContent = score;
-    
-    const finalpercent = (score/quizquestions.length)*100;
+    resultElement.textContent = score;
+    progressBar.style.width = "100%";
 
-    if (finalpercent === 100) {
-        resultmessage.textContent = "A Perfect Score!";
-    }
-    else if (finalpercent >= 80) {
-        resultmessage.textContent = "Nice Job!👍";
-    }
-    else if (finalpercent >= 60) {
-        resultmessage.textContent = "3/5";
-    }
-    else if (finalpercent >= 40) {
-        resultmessage.textContent = "2/5";
-    }
-    else if (finalpercent >= 20) {
-        resultmessage.textContent = "You can do better";
-    }
-    else {
-        resultmessage.textContent = "None Correct😭";
+    const finalPercent = (score / quizQuestions.length) * 100;
+
+    if (finalPercent === 100) {
+        resultMessage.textContent = "A Perfect Score! 🏆";
+    } else if (finalPercent >= 80) {
+        resultMessage.textContent = "Nice Job! 👍";
+    } else if (finalPercent >= 60) {
+        resultMessage.textContent = "Good effort! 👏";
+    } else if (finalPercent >= 40) {
+        resultMessage.textContent = "Not bad, keep practicing! 📚";
+    } else if (finalPercent >= 20) {
+        resultMessage.textContent = "You can do better! 💪";
+    } else {
+        resultMessage.textContent = "Better luck next time! 💡";
     }
 }
 
-function restartQuiz(){
-    console.log("Quiz reStarted!");
+function restartQuiz() {
     resultScreen.classList.remove("game");
     startQuiz();
 }

@@ -3,52 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizz</title>
+  <title>Trivia Quiz Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="block">
 
+    <!-- Start Screen -->
     <div class="screen game" id="start-screen">
-      <h1>
-        Quiz!
-      </h1>
+      <h1>Quiz!</h1>
       <p>Test your knowledge</p>
-      <button class="startbtn" id="startbtn"> Start Quiz!</button>
+      <button class="startbtn" id="startbtn">Start Quiz!</button>
     </div>
 
+    <!-- Active Game Screen -->
     <div class="screen" id="game-screen">
-      <h2 id="question">question!?</h2>
+      <h2 id="question">Question</h2>
       <div class="quizinfo">
-        <p>Question <span id="curq">1</span> out of <span id="totalq">5</span></p>
+        <p>Question <span id="curq">1</span> of <span id="totalq">5</span></p>
         <p>Score: <span id="score">0</span></p>
       </div>
-      <div id="answers" class="answers">
+      <div id="answers" class="answers"></div>
 
-      </div>
-
-      <div class="progersbar">
-        <div id="progress" class="progress">
-          
-        </div>
+      <div class="progressbar">
+        <div id="progress" class="progress"></div>
       </div>
     </div>
 
+    <!-- Result Screen -->
     <div class="screen" id="result-screen">
-      <h1>
-        Quiz Over!
-      </h1>
+      <h1>Quiz Over!</h1>
       <div class="info">
-        <p>You scored <span id="result">0</span> out of <span id="totalq">5</span>!</p>
+        <p>You scored <span id="result">0</span> out of <span id="final-totalq">5</span>!</p>
         <div id="resultmessage">Good Job!</div>
       </div>
-      <button id="resultbutton">Restart Quiz</button> 
+      <button id="resultbutton">Restart Quiz</button>
     </div>
-      
-    
+
   </div>
-  <script src="script.js">
-    
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
